@@ -1,0 +1,9 @@
+<% if current_user.favorites != nil %>
+  <h3>Your favorites: </h3>
+  <hr><br>
+  <% @favorites.each do |fav| %>
+  <%= link_to fav.post.title, post_path(fav.post) %>
+  <% end %>
+<% else %>
+  <h3>No favorites</h3>
+<% end %>

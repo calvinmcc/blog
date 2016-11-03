@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran|Poiret+One|Righteous|Shrikhand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link rel="stylesheet" href="w3.css" media="screen" title="no title">
+  </head>
+  <body>
+    <div class="w3-container w3-teal w3-padding-64" style="height: 200px; text-align: center; font-family: 'Righteous', cursive; font-size: 56px;" > t h i n g s </div>
+    <ul class="w3-navbar w3-card-8 w3-light-grey">
+        <li><%= link_to 'Home', home_path %> </li>
+        <li><%= link_to 'About', about_path %> </li>
+        <li><%= link_to 'New Post', new_post_path %> </li>
+        <li><%= link_to 'All Posts', posts_path %> </li>
+        <li><%= link_to 'All Tags', tags_path %> </li>
+        <% if current_user && user_signed_in? %>
+          <li class="w3-right"><%= link_to "Hey #{current_user.first_name}!", edit_user_path(current_user) %> </li>
+          <li><%= link_to 'Sign Out', sessions_path, method: :delete %> </li>
+          <li><%= link_to 'Change Password', edit_password_path(current_user) %></li>
+        <% else %>
+          <li><%= link_to 'New User', new_user_path %> </li>
+          <li><%= link_to 'Sign In', new_session_path %>
+        <% end %>
+        <% if current_user && user_signed_in? %>
+        <li> <%= link_to 'Favorites', user_path(current_user) %></li>
+        <% end %>
+      </ul>
+    <br>
+    <%= notice || alert %>
+    <%= yield %>
+
+  </body>
+</html>

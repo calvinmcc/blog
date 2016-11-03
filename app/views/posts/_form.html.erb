@@ -1,0 +1,29 @@
+<div class="w3-center">
+<%= form_for @post do |p| %>
+<div "w3-left">
+  <%= p.label :category %> &nbsp;
+  <%= p.select :category_id,
+                Category.all.map{|c| [c.title, c.id]}%>
+</div><br>
+<div>
+  <%= p.label :title %> &nbsp;
+  <%= p.text_field :title %>
+</div><br>
+<div>
+  <%= p.label :body %> &nbsp;
+  <%= p.text_area :body %>
+</div><br>
+<div>
+    Tags &nbsp;
+    <%= p.collection_select(
+      :tag_ids, Tag.all, :id, :name, {},
+      { multiple: true, class: 'chosen-select' }
+    ) %>
+</div><br>
+<%= p.submit %>
+<% end %>
+</div>
+
+<script>
+  $('.chosen-select').chosen({ width: '300px' });
+</script>
