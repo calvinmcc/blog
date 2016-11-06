@@ -11,6 +11,11 @@ tags = Tag.all
                password: Faker::Internet.password })
 end
 
+categories = ['Food', 'Sports', 'Health', 'Science', 'Stuff', 'Politics', 'Fashion']
+categories.each do |category|
+  Category.create({title: category})
+end
+
 100.times do
   Post.create({title: Faker::Company.catch_phrase,
                  body: Faker::Hacker.say_something_smart,
@@ -19,8 +24,3 @@ end
                  tags: tags.sample(rand(3) + 1)
                  })
 end
-
-  # categories = ['Food', 'Sports', 'Health', 'Science', 'Stuff', 'Politics', 'Fashion']
-  # categories.each do |category|
-  #   Category.create({title: category})
-  # end
