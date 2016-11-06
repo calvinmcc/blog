@@ -1,10 +1,9 @@
-<div class="w3-center">
-<%= form_for @post do |p| %>
-<div "w3-left">
-  <%= p.label :category %> &nbsp;
-  <%= p.select :category_id,
+<div class="new">
+<%= form_for(@post, :html => { :class => "entry_form"} ) do |p| %>
+<%# p.label :category %>
+  <%# p.select :category_id,
                 Category.all.map{|c| [c.title, c.id]}%>
-</div><br>
+<!-- </div><br> -->
 <div>
   <%= p.label :title %> &nbsp;
   <%= p.text_field :title %>
@@ -21,9 +20,9 @@
     ) %>
 </div><br>
 <%= p.submit %>
-<% end %>
 </div>
+<% end %>
 
 <script>
-  $('.chosen-select').chosen({ width: '300px' });
+  $('.chosen-select').chosen({ width: '100%' });
 </script>

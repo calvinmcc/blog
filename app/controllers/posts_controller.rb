@@ -25,18 +25,13 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
   end
 
-  # before_filter :set_page, only: [:index]
-  #   POSTS_PER_PAGE = 10
   WillPaginate.per_page = 10
 
   def index
-    # @posts = Post.order(created_at: :desc).limit(POSTS_PER_PAGE).offset(@page.to_i * POSTS_PER_PAGE)
-    # @posts_count = Post.all.count
-    # @posts = Post.paginate(:page => params[:page]).order('created_at DESC')
       if params[:search]
-        @post_search = Post.all.search(params[:search]).order("created_at DESC").paginate(:page => params[:page])
+        @post_search = Post.all.search(params[:search]).order("title ASC").paginate(:page => params[:page])
       else
-        @post_search = Post.all.order('created_at DESC').paginate(:page => params[:page])
+        @post_search = Post.all.order('title ASC').paginate(:page => params[:page])
       end
     end
 

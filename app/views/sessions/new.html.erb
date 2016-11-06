@@ -1,13 +1,19 @@
-<h1>Sign In:</h1>
+<h3 class="page_header">SIGN<span class="green">&nbsp;//&nbsp;</span>IN</h3>
+<br><br><br><br>
 <%= form_tag sessions_path do %>
-<div>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
+<div class="new">
+  <div class="entry_form">
+    <div>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+  <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <br>
+  <%= submit_tag "Sign in!" %>
+  <% end %>
+  </div>
 </div>
-<div>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-</div>
-<%= submit_tag %>
-<% end %>
 <%# link_to 'Forgot Password?', new_recovery_path %>

@@ -1,5 +1,8 @@
-<h1>New User</h1>
-<%= form_for @user do |f| %>
+<h3 class="page_header">NEW<span class="green">&nbsp;//&nbsp;</span>USER</h3>
+<br><br><br><br><br>
+<div class="new">
+
+<%= form_for(@user, :html => { :class => "entry_form"} ) do |f| %>
 <div>
   <%= f.label :first_name %>
   <%= f.text_field :first_name %>
@@ -23,3 +26,4 @@
 </div>
 <%= f.submit %>
 <% end %>
+</div>

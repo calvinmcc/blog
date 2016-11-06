@@ -1,6 +1,8 @@
-<h3>All Tags</h3>
-<hr>
+<h3 class="page_header">ALL<span class="green">&nbsp;//&nbsp;</span>TAGS</h3>
+<br><br><br><br>
+<div class="w3-threequarter w3-left w3-margin large-list">
 <% @tags.each do |tag| %>
   <%= link_to tag.name, tag_path(tag) %>
   <hr>
 <% end %>
+</div>

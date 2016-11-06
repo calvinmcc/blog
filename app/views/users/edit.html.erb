@@ -1,6 +1,7 @@
-<%= current_user.errors.full_messages.join(', ') %>
-<h1>Edit Profile</h1>
-<%= form_for current_user do |f| %>
+<h3 class="page_header">EDIT<span class="green">&nbsp;//&nbsp;</span>PROFILE</h3>
+<br><br><br><br>
+<div class="new entry_form">
+ <%= form_for current_user do |f| %>
 <div>
   <%= f.label :first_name %>
   <%= f.text_field :first_name %>
@@ -13,5 +14,7 @@
   <%= f.label :email %>
   <%= f.email_field :email %>
 </div>
+<br>
  <%= f.submit %>
 <% end %>
+</div>

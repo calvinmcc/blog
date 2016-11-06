@@ -1,16 +1,23 @@
-  <h3 class="w3-quarter"style="font-family: 'Catamaran', sans-serif;"><%= @post.category.title %></h3>
-  <div class="w3-threequarter w3-left">
-  <h1 class="w3-container w3-left" style="font-family: 'Catamaran', sans-serif;"><%= @post.title %></h1>
-  <p class="w3-threequarter w3-left" style="font-family: 'Catamaran', sans-serif;">~<%= @post.user_full_name%></p>
-  <p class="w3-threequarter w3-left" style="font-family: 'Catamaran', sans-serif;"><%= @post.body %></p>
-  <% @post.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-  <br><br>
+  <!-- <h3 class="w3-quarter"style="font-family: 'Catamaran', sans-serif;"><%# @post.category.title %></h3> -->
+  <h1 class="post title"><%= @post.title %></h1>
+  <p class="post"><%= @post.user_full_name%></p>
+  <p class="post"><%= @post.body %></p>
+  <div class="post">
+
   <% if can? :manage, @post %>
     <%= link_to 'Edit', edit_post_path %>
     <%= link_to 'Delete', post_path(@post), method: :delete,
-                          data: {confirm: "Are you sure?"} %>
+                                            data: {confirm: "Are you sure?"} %>
+    <% end %>
+  <br><br>
+  <% @post.tags.each do |tag| %>
+    <div class="w3-btn w3-round w3-teal" style="padding:3px">
+      <div class="w3-btn w3-round w3-teal">
+        <div class="tag_link">
+          <%= link_to tag.name, tag_path(tag) %>
+        </div>
+      </div>
+    </div>
   <% end %>
   <% favorite = Favorite.find_by(user: current_user, post: @post) %>
   <% if current_user && user_signed_in? %>
@@ -22,7 +29,6 @@
   <% end %>
   <%= form_for [@post, @comment] do |f| %>
     <div>
-      <%= f.label :body %>
       <%= f.text_area :body %>
     </div>
     <%= f.submit %>
@@ -38,4 +44,5 @@
     <% end %>
     <hr>
   <% end %>
+</div>
 </div>
