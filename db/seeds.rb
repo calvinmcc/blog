@@ -1,5 +1,5 @@
-10.times do
-  Tag.create(name: Faker::Music.instrument)
+20.times do
+  Tag.create(name: Faker::Commerce.department)
 end
 
 tags = Tag.all
