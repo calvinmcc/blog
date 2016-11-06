@@ -4,6 +4,13 @@ end
 
 tags = Tag.all
 
+20.times do
+  User.create({first_name: Faker::Name.first_name,
+               last_name: Faker::Name.last_name,
+               email: Faker::Internet.email,
+               password: Faker::Internet.password })
+end
+
 100.times do
   Post.create({title: Faker::Company.catch_phrase,
                  body: Faker::Hacker.say_something_smart,
