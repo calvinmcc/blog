@@ -28,10 +28,17 @@ class PostsController < ApplicationController
   WillPaginate.per_page = 10
 
   def index
-      if params[:search]
-        @post_search = Post.all.search(params[:search]).order("title ASC").paginate(:page => params[:page])
-      else
-        @post_search = Post.all.order('title ASC').paginate(:page => params[:page])
+    if params[:search]
+      @post_search = Post.all.search(params[:search]).order("title ASC").paginate(:page => params[:page])
+    else
+      @post_search = Post.all.order('title ASC').paginate(:page => params[:page])
+    end
+      @posts = Post.all
+      respond_to do |format|
+        format.html { render }
+        format.text { render }
+        format.xml { render xml: @posts.to_xml }
+        format.json { render json: @posts.to_json }
       end
     end
 

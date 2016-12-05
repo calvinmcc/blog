@@ -8,18 +8,25 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @comment.post = @post
     @comment.user = current_user
-    if @comment.save
-      redirect_to post_path(@post), notice: 'Comment created!'
-    else
-      render 'posts/show'
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to post_path(@post), notice: 'Comment created!' }
+        format.js { render :comment_success }
+      else
+        format.html { render 'posts/show' }
+        format.js { render :comment_failure }
+      end
     end
   end
 
   def destroy
-    post = Post.find params[:post_id]
-    comment = Comment.find params[:id]
-    comment.destroy
-    redirect_to post_path(post), notice: 'Comment deleted'
+    @post = Post.find params[:post_id]
+    @comment = Comment.find params[:id]
+    @comment.destroy
+    respond_to do |format|
+      format.js { render }
+      format.html { redirect_to post_path(post), notice: 'Comment deleted' }
+    end
   end
 
   private
